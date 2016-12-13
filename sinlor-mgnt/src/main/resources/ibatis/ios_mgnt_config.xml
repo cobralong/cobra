@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="true"
+		lazyLoadingEnabled="true" maxRequests="128" maxSessions="10"
+		maxTransactions="5" useStatementNamespaces="false"
+		defaultStatementTimeout="30" />
+	<sqlMap resource="ibatis/ios_mgnt_menu.xml" />
+	<sqlMap resource="ibatis/ios_mgnt_users.xml" />
+	<sqlMap resource="ibatis/ios_mgnt_userrole.xml" />
+	<sqlMap resource="ibatis/ios_mgnt_urgentonlinerecord.xml" />
+	<sqlMap resource="ibatis/ios_mgnt_clientupgradehistory.xml" />
+</sqlMapConfig>

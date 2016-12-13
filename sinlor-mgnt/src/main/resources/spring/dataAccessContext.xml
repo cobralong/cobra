@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+	<bean id="searchWordTransform"
+		class="com.appchina.search.dashboard.dao.SearchWordTransformDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="overviewDao" class="com.appchina.search.dashboard.dao.SearchOverviewDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="keywordDao" class="com.appchina.search.dashboard.dao.SearchKeywordDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="emptyResultKeywordDao"
+		class="com.appchina.search.dashboard.dao.EmptyResultKeywordDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="searchAppDownDao" class="com.appchina.search.dashboard.dao.SearchAppDownDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="instantAppDownDao" class="com.appchina.search.dashboard.dao.InstantAppDownDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="suggestionClickDao"
+		class="com.appchina.search.dashboard.dao.SuggestionClickDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="queryReviseDao" class="com.appchina.search.dashboard.dao.QueryReviseDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="relatedQueryDao" class="com.appchina.search.dashboard.dao.RelatedQueryDaoImpl">
+		<property name="dataSource" ref="appContextDataSource" />
+	</bean>
+
+	<bean id="hotKeywordDao" class="com.appchina.search.dashboard.dao.HotKeywordDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="hotwordSnapshotDao"
+		class="com.appchina.search.dashboard.dao.HotwordSnapshotDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="hotwordUpdateFlagDao"
+		class="com.appchina.search.dashboard.dao.HotwordUpdateFlagDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="searchProfilerTaskDao"
+		class="com.appchina.search.dashboard.dao.SearchProfilerTaskDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="searchProfilerDao" class="com.appchina.search.dashboard.dao.SearchProfilerDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="searchEvaluateResultDao"
+		class="com.appchina.search.dashboard.dao.SearchEvaluateResultDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="searchEvaluateStatDao"
+		class="com.appchina.search.dashboard.dao.SearchEvaluateStatDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="searchEvaluateTaskDao"
+		class="com.appchina.search.dashboard.dao.SearchEvaluateTaskDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="badCaseDao" class="com.appchina.search.dashboard.dao.BadCaseDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="searchEngineDao" class="com.appchina.search.dashboard.dao.SearchEngineDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="searchBarClickDao" class="com.appchina.search.dashboard.dao.SearchBarClickDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="blockBannedQueryDao"
+		class="com.appchina.search.dashboard.dao.BlockBannedQueryDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="searchKeywordCommentDao"
+		class="com.appchina.search.dashboard.dao.SearchKeywordCommentDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="termWeightDao" class="com.appchina.search.dashboard.dao.TermWeightDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="configureWordDao" class="com.appchina.search.dashboard.dao.ConfigureWordDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="queryCommentDao" class="com.appchina.search.dashboard.dao.QueryCommentDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="wordTendencyDao" class="com.appchina.search.dashboard.dao.WordTendencyDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="categoryItemDao" class="com.appchina.search.dashboard.dao.CategoryItemDaoImpl">
+		<property name="dataSource" ref="mproductionDataSource" />
+	</bean>
+
+	<bean id="newApplicationDao" class="com.appchina.search.dashboard.dao.NewApplicationDaoImpl">
+		<property name="dataSource" ref="mproductionDataSource" />
+	</bean>
+
+	<bean id="blockDao" class="com.appchina.search.dashboard.dao.BlockDaoImpl">
+		<property name="dataSource" ref="mproductionDataSource" />
+	</bean>
+
+	<bean id="packageBlockRelationDao"
+		class="com.appchina.search.dashboard.dao.PackageBlockRelationDaoImpl">
+		<property name="dataSource" ref="mproductionDataSource" />
+	</bean>
+
+	<bean id="searchSogouDictDao"
+		class="com.appchina.search.dashboard.dao.SearchSogouDictDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="searchBaiduDictDao"
+		class="com.appchina.search.dashboard.dao.SearchBaiduDictDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="fuzzyWordDao" class="com.appchina.search.dashboard.dao.FuzzyWordDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="fuzzyWordFeatureDao"
+		class="com.appchina.search.dashboard.dao.FuzzyWordFeatureDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="synonymsDao" class="com.appchina.search.dashboard.dao.SynonymsDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="cronMonitorDao" class="com.appchina.search.dashboard.dao.CronMonitorDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="cronRunNotifyDao" class="com.appchina.search.dashboard.dao.CronRunNotifyDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="manualPromotionDao"
+		class="com.appchina.search.dashboard.dao.ManualPromotionDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="keywordBlockDownRateStatDao"
+		class="com.appchina.search.dashboard.dao.KeywordBlockDownRateStatDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="appInstallStatisticsDao"
+		class="com.appchina.search.dashboard.dao.AppInstallStatisticsDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="appInstallAnalyzeDao"
+		class="com.appchina.search.dashboard.dao.AppInstallAnalyzeDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="appclearinfoDao" class="com.appchina.search.dashboard.dao.AppClearInfoDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="searchwordDao" class="com.appchina.search.dashboard.dao.SearchWordDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="searchResultComplementStatDao"
+		class="com.appchina.search.dashboard.dao.SearchResultComplementStatDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+
+	<bean id="appVividnessDao" class="com.appchina.search.dashboard.dao.AppVividnessDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+	
+	<bean id="appstatusDao" class="com.appchina.search.dashboard.dao.AppstatusDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+	
+	<bean id="exactwordDao" class="com.appchina.search.dashboard.dao.ExactwordDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+	
+	<bean id="userinfoDao" class="com.appchina.search.dashboard.dao.UseinfoDaoImpl">
+		<property name="dataSource" ref="dbDataSource" />
+	</bean>
+</beans>

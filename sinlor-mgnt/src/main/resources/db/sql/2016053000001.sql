@@ -1,0 +1,1 @@
+insert into mgnt_menu values(901113, 'WebClip安装导航', 9011, '/auth/pcsuite/webclip/navigation/info/detail', 0, now(), now());

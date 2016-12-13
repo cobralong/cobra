@@ -1,0 +1,83 @@
+.undisplay {
+	display: none;
+}
+.hello-name{display:block;padding: 10px 10px 11px;line-height: 19px;color: #ffffff;text-decoration: none;text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);}
+.imgLarge{position:absolute; top:100px; left:100px; z-index:100;}
+input,.input-medium,.input-large,.input-small{height:28px;}
+.pagination{width:580px;margin:18px auto;}
+.pagination a:hover{background-color: #f5f5f5;}
+.pagination span{ 
+	  float: left;
+	  padding: 0 14px;
+	  line-height: 34px;
+	  text-decoration: none;
+	  border: 1px solid #ddd;
+	  border-left-width: 0;
+}
+.pagination .nav_first {
+	border-left-width:1px;
+}
+.pagination span.current,
+.pagination  span.disabled  {background-color: #f5f5f5;color: #999999; cursor: default;}
+
+label.success,label.error{display: inline-block;}
+label.success{color:green;}
+label.error{color:red;}
+.mgl{margin-left:162px;}
+.inputLarge{width:751px; height:200px;}
+.inputUpdate{width:751px;height:66px;}
+.inputOneLine{width:751px;height:28px;}
+.snapshot{width:150px;}
+.preview_snapshot{position:absolute; z-index:100; margin-top:-255px;}
+
+.fl{display:inline-block;float:left;margin-left:10px;}
+.form-horizontal .control-label{padding-top:0px;}
+a.deleteByApp:hover,a.deleteByUser:hover,a.addByApp:hover,a.addByUser:hover{text-decoration: underline;cursor: pointer;}
+.center{text-align:center;}
+
+.mark-visited:visited {
+    color: red;
+}
+
+.apk-icon {
+    width: 72px;
+    height: 72px;
+}
+
+.banner {
+    width: 204px;
+    height: 100px;
+}
+
+.category-icon {
+    width: 72px;
+    height: 72px;
+}
+
+.safe{color:green; font-weight:bold;}
+.unsafe{color:red; font-weight:bold;}
+.scaning{color:#EC9807; font-weight:bold;}
+
+.treated{
+    color: red;
+}
+
+.chart{min-width: 400px; height: 400px; margin:0 auto;}
+
+#preview{
+    position:absolute;
+    border:1px solid #ccc;
+    background:#333;
+    padding:5px;
+    display:none;
+    color:#fff;
+}
+
+.cursor_cell{cursor:cell;}
+.safety_pac{width:300px;}
+
+div#thumb{height:125px;margin:0 auto auto auto;width:1200px;}
+div#thumb ul{overflow:hidden;zoom:1;}
+div#thumb ul li{float:left;height:120px;margin:0 40px 0 0px;overflow:hidden;}
+div#thumb ul li img{width:60px;height:100px;border:2px solid #E5E5E5;vertical-align:middle;}
+div#thumb ul li div{height:20px;line-height:20px;width:60px;text-align:center;}

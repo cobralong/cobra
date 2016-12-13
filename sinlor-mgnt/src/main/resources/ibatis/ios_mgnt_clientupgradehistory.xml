@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="rfq">
+	<resultMap id="clientupgradehistory"
+		class="com.appchina.ios.mgnt.dto.ClientUpgradeHistory">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="file_path" property="filePath" jdbcType="VARCHAR" />
+		<result column="bundle_id" property="bundleId" jdbcType="VARCHAR" />
+		<result column="sign" property="sign" jdbcType="VARCHAR" />
+		<result column="ipa_channel" property="ipaChannel" jdbcType="VARCHAR" />
+		<result column="support_device_flag" property="supportDeviceFlag"
+			jdbcType="INTEGER" />
+		<result column="support_min_os" property="supportMinOs"
+			jdbcType="VARCHAR" />
+		<result column="version" property="version" jdbcType="VARCHAR" />
+		<result column="short_version" property="shortVersion"
+			jdbcType="INTEGER" />
+		<result column="test" property="test" jdbcType="INTEGER" />
+		<result column="plist" property="plist" jdbcType="VARCHAR" />
+		<result column="upgrade_info" property="upgradeInfo" jdbcType="VARCHAR" />
+		<result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
+		<result column="ipa_md5" property="ipaMd5" jdbcType="VARCHAR" />
+		<result column="test_ipa_status" property="testIpaStatus"
+			jdbcType="INTEGER" />
+		<result column="info" property="info" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<insert id="insertOrUpdateClientUpgradeHistory" parameterClass="com.appchina.ios.mgnt.dto.ClientUpgradeHistory">
+		<![CDATA[
+			INSERT INTO mgnt_client_upgradehistory (`id`, `file_path`, `bundle_id`, `sign`, `ipa_channel`, `support_device_flag`, `support_min_os`, `version`, 
+			`short_version`, `test`, `plist`, `upgrade_info`, `release_date`, `ipa_md5`, `test_ipa_status`, `info`, `status`,
+			`update_time`, `create_time`)
+			VALUES(null, #filePath#, #bundleId#, #sign#, #ipaChannel#, #supportDeviceFlag#, #supportMinOs#, #version#, #shortVersion#, 
+			#test#, #plist#, #upgradeInfo#, #releaseDate#, #ipaMd5#, #testIpaStatus#, #info#, #status#, now(), now())
+		]]>
+	</insert>
+
+	<update id="updateClientUpgradeHistoryPublishInfo"
+		parameterClass="com.appchina.ios.mgnt.dto.ClientUpgradeHistory">
+		<![CDATA[
+			UPDATEO mgnt_client_upgradehistory 
+			SET `accept_upgrade` = #acceptUpgrade#, `support_upgrade` = #supportUpgrade#, `upgrade_count` = #upgradeCount#, `status` = #status#
+			WHERE `id` = #id#
+		]]>
+	</update>
+
+	<delete id="deleteClientUpgradeHistoryById" parameterClass="java.lang.Integer">
+		<![CDATA[
+			DELETE FROM mgnt_client_upgradehistory WHERE `id` = #id#;
+		]]>
+	</delete>
+
+	<select id="queryClientUpgradeHistoryObject" parameterClass="java.lang.Integer"
+		resultMap="clientupgradehistory">
+		<![CDATA[
+			SELECT * FROM `mgnt_client_upgradehistory` WHERE `id` = #id#;
+		]]>
+	</select>
+
+	<select id="countClientUpgradeHistory" parameterClass="java.util.Map"
+		resultClass="java.lang.Long">
+		SELECT count(*) FROM `mgnt_client_upgradehistory`
+		<dynamic prepend=" WHERE ">
+			<isPropertyAvailable property="ipaChannel">
+				<isNotNull property="ipaChannel" prepend=" and ">
+					`ipa_channel` =
+					#channel#
+				</isNotNull>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="test">
+				<isNotNull property="test" prepend=" and ">
+					`test` =
+					#test#
+				</isNotNull>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="status">
+				<isNotNull property="status" prepend=" and ">
+					`status` =
+					#status#
+				</isNotNull>
+			</isPropertyAvailable>
+		</dynamic>
+	</select>
+
+	<select id="queryClientUpgradeHistoryList" parameterClass="java.util.Map"
+		resultMap="clientupgradehistory">
+		SELECT * FROM `mgnt_client_upgradehistory`
+		<dynamic prepend=" WHERE ">
+			<isPropertyAvailable property="ipaChannel">
+				<isNotNull property="ipaChannel" prepend=" and ">
+					`ipa_channel` =
+					#channel#
+				</isNotNull>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="test">
+				<isNotNull property="test" prepend=" and ">
+					`test` =
+					#test#
+				</isNotNull>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="status">
+				<isNotNull property="status" prepend=" and ">
+					`status` =
+					#status#
+				</isNotNull>
+			</isPropertyAvailable>
+		</dynamic>
+		ORDER BY id DESC LIMIT #start#, #size#;
+	</select>
+</sqlMap>

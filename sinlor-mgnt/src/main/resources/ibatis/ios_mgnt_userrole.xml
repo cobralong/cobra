@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="rfq">
+	<insert id="insertUserRole" parameterClass="java.util.Map">
+			<![CDATA[
+				insert INTO user_roles(`user_id`, `authority`)
+				VALUE(#userId#,#authority#)
+			]]>
+	</insert>
+	<select id="queryUserRole" parameterClass="java.util.Map" resultClass="java.lang.String">
+			SELECT `authority` 
+			FROM `user_roles` 
+			WHERE user_id = (SELECT `user_id` FROM `users` WHERE username = #userName#);
+	</select>
+</sqlMap>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<bean id= "propertyConfigurer"         
+        class = "org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >         
+    	<property name="location"  value= "/WEB-INF/config/config.properties" />         
+	</bean> 
+    
+	<bean id="dbDataSource" destroy-method="close"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://${db_ip}/${db_name}?useUnicode=true&amp;characterEncoding=utf-8" />
+		<property name="user" value="${db_username}" />
+		<property name="password" value="${db_password}" />
+		<property name="maxPoolSize" value="50" />
+		<property name="testConnectionOnCheckout" value="true"/>
+	</bean>
+    
+	<bean id="appContextDataSource" destroy-method="close"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://${app_context_db_ip}/${app_context_db_name}?useUnicode=true&amp;characterEncoding=utf-8" />
+		<property name="user" value="${app_context_db_username}" />
+		<property name="password" value="${app_context_db_password}" />
+		<property name="maxPoolSize" value="50" />
+		<property name="testConnectionOnCheckout" value="true"/>
+	</bean>
+	
+	<bean id="mproductionDataSource" destroy-method="close"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://${app_mproduction_db_ip}/${app_mproduction_db_name}?useUnicode=true&amp;characterEncoding=utf-8" />
+		<property name="user" value="${app_mproduction_db_username}" />
+		<property name="password" value="${app_mproduction_db_password}" />
+		<property name="maxPoolSize" value="50" />
+		<property name="testConnectionOnCheckout" value="true"/>
+	</bean>
+</beans>

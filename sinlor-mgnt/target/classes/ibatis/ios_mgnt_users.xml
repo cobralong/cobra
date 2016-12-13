@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="rfq">
+	<resultMap id="user" class="com.appchina.ios.mgnt.dto.User">
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="username" property="userName" jdbcType="varchar" />
+		<result column="authority" property="userRole" jdbcType="varchar" />
+	</resultMap>
+	<select id="queryUserPwd" parameterClass="java.lang.String"
+		resultClass="java.lang.String">
+		<![CDATA[
+			SELECT password FROM `users` WHERE username = #username#
+		]]>
+	</select>
+	<update id="updateUserPwd" parameterClass="java.util.Map">
+		<![CDATA[
+			UPDATE users
+			SET password = #newPwdEncode#
+			WHERE `username` = #username# 
+		]]>
+	</update>
+
+	<insert id="insertUser" parameterClass="java.util.Map">
+		insert INTO users(`user_id`, `username`, `password`,`enabled`)
+		VALUE(null,#username#,#password#,1)
+		<selectKey resultClass="int" keyProperty="id">
+			SELECT @@IDENTITY
+			AS id
+		</selectKey>
+	</insert>
+
+	<select id="queryUserList" resultMap="user">
+		<![CDATA[
+			SELECT users.user_id, users.username, user_roles.authority FROM users, user_roles WHERE users.user_id = user_roles.user_id;
+		]]>
+	</select>
+
+	<select id="queryAdminUserId" parameterClass="java.lang.String"
+		resultClass="int">
+		<![CDATA[
+			SELECT `user_id` FROM `users` WHERE user_id = (SELECT `user_id` FROM `user_roles` WHERE authority=#authority#);
+		]]>
+	</select>
+
+	<select id="queryUserObjectByUserName" parameterClass="java.lang.String"
+		resultMap="user">
+		<![CDATA[
+			SELECT user_id, username, "" as authority FROM `users` WHERE username = #userName#
+		]]>
+	</select>
+
+	<delete id="deleteUser" parameterClass="int">
+		<![CDATA[
+			DELETE FROM `users` WHERE user_id = #userId#
+		]]>
+	</delete>
+</sqlMap>

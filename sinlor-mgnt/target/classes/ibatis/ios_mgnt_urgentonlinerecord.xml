@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="rfq">
+	<resultMap id="urgentonlinerecord" class="com.appchina.ios.core.dto.app.UrgentOnlineRecord">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="item_id" property="itemId" jdbcType="INTEGER" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="locale" property="locale" jdbcType="VARCHAR" />
+		<result column="root_id" property="rootId" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<insert id="insertOrIgnoreUrgentOnlineRecord" parameterClass="com.appchina.ios.core.dto.app.UrgentOnlineRecord">
+		<![CDATA[
+			INSERT INTO urgent_online_record (`id`, `item_id`, `url`, `locale`, `root_id`, `name`, `status`, `update_time`, `create_time`)
+			VALUES(null, #itemId#, #url#, #locale#, #rootId#, #name#, 0, now(), now())
+		]]>
+	</insert>
+
+	<insert id="updateUrgentOnlineRecord" parameterClass="com.appchina.ios.core.dto.app.UrgentOnlineRecord">
+		<![CDATA[
+			UPDATE urgent_online_record 
+			SET `locale` = #locale#, `url` = #url#, `root_id` = #rootId#, `name` = #name#
+			WHERE id = #id#
+		]]>
+	</insert>
+
+	<select id="queryUrgentOnlineRecordList" parameterClass="java.util.Map"
+		resultMap="urgentonlinerecord">
+		SELECT * FROM urgent_online_record
+		<dynamic prepend=" WHERE ">
+			<isPropertyAvailable property="itemId">
+				<isNotNull property="itemId" prepend=" and ">
+					item_id =
+					#itemId#
+				</isNotNull>
+			</isPropertyAvailable>
+		</dynamic>
+		ORDER BY update_time DESC LIMIT #start#, #size#
+	</select>
+
+	<select id="queryUrgentOnlineRecordRootIds" parameterClass="java.util.Map"
+		resultClass="java.lang.Integer">
+		<![CDATA[
+			SELECT DISTINCT `root_id` FROM urgent_online_record WHERE root_id is not null ORDER BY `root_id` LIMIT #start#, #size#
+		]]>
+	</select>
+
+	<select id="countUrgentOnlineRecord" parameterClass="com.appchina.ios.core.dto.app.UrgentOnlineRecord"
+		resultClass="java.lang.Long">
+		SELECT count(*) FROM urgent_online_record
+		<dynamic prepend=" WHERE ">
+			<isPropertyAvailable property="itemId">
+				<isNotNull property="itemId" prepend=" and ">
+					item_id =
+					#itemId#
+				</isNotNull>
+			</isPropertyAvailable>
+		</dynamic>
+	</select>
+
+	<select id="queryNoRootIdUrgentOnlineRecordList" parameterClass="java.util.Map"
+		resultMap="urgentonlinerecord">
+		<![CDATA[
+			SELECT * FROM urgent_online_record WHERE id < #endId# AND `root_id` IS NULL ORDER BY id DESC LIMIT #size#;
+		]]>
+	</select>
+</sqlMap>

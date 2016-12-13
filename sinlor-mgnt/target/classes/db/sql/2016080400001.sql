@@ -1,0 +1,1 @@
+insert into mgnt_menu values(900113, '编辑提交应用列表',9001,'/auth/app/listcommit', 0, now(), now());

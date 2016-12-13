@@ -1,0 +1,1 @@
+insert into mgnt_menu values(901114, '应用汇下载汇报表',9011,'/auth/install/report/list', 0, now(), now());
